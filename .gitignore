@@ -1,0 +1,10 @@
+# Lecture5 gitignore
+*.mat
+*.mhd
+*.raw
+*.nii
+*.log
+**/TempFile
+**/elastix
+**/Data
+*solution.m
