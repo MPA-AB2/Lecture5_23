@@ -27,7 +27,7 @@ for i = 1:size(folders,1)
     wholeThing{i,1} = strcat(elastixPathExe,fixed,moving,outputDir,params,mMask,fMask);
     wholeThing{i,2} = strcat(mainPath,'Data\',folders{i},'\deformationField_Est.nii');
 end
-wholeThing{1,3} =strcat(transformixPathExe, '-def all -out', {' '},mainPath,' -tp', {' '}, mainPath,'Temp\TransformParameters.0.txt');
+wholeThing{1,3} =strcat(transformixPathExe, ' -def all -out', {' '},mainPath,'Temp -tp', {' '}, mainPath,'Temp\TransformParameters.0.txt');
 wholeThing{1,4} =strcat(mainPath,'Temp\deformationField.nii');
 
 end
