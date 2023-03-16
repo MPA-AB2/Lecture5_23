@@ -3,7 +3,7 @@ function  MED_t3(wholeThing,poradi)
 %   Detailed explanation goes here
 
 delete("V:\4_mag\Lecture5_23\MED\Data\Temp\*");
-
+mkdir('V:\AB2\MAIN\Lecture5_23\MED\Data\Images')
 cesta = char(wholeThing{poradi,1})
     
 
