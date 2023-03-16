@@ -23,7 +23,7 @@ for i = 1:size(folders,1)
     moving = strcat(' -m',{' '},mainPath,'Data\',folders{i},'\moving.nii');
     outputDir = strcat(' -out',{' '},mainPath,'Temp\');
     mMask = strcat(' -mMask',{' '},mainPath,'Data\',folders{i},'\mmask.nii');
-    fMask = strcat(' -mMask',{' '},mainPath,'Data\',folders{i},'\fmask.nii');
+    fMask = strcat(' -fMask',{' '},mainPath,'Data\',folders{i},'\fmask.nii');
     wholeThing{i,1} = strcat(elastixPathExe,fixed,moving,outputDir,params,mMask,fMask);
     wholeThing{i,2} = strcat(mainPath,'Data\',folders{i},'\deformationField_Est.nii');
 end
