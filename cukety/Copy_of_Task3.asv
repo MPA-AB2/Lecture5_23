@@ -1,6 +1,22 @@
-%% registrace s eval
 
-register_lungs(path_Data)
+%% Initialization
+
+pth_data = 'Data\Data\';
+pth_par = which('Parameters_Affine.txt');
+
+
+% register_lungs(path_Data)
+
+list_pat = dir(pth_data);
+
+for idx = 3:length(list_pat)
+    pth_pat = pth_data, list_pat(idx)];
+end
+
+
+return
+%%
+% register_lungs(path_Data)
 
 filename = 'Data\Data\pat01\fixed.nii';
 fixed = niftiread(filename);

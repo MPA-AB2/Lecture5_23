@@ -1,0 +1,38 @@
+function register_lungs(pth_data)
+% function
+
+%% Initialization
+list_pat = dir(pth_data);
+
+for idx = 3:length(list_pat)
+    pth_pat = [list_pat(idx).folder,'\',list_pat(idx).name]
+
+filename_fixec = [list_pat(idx).folder,'\',list_pat(idx).name,'\fixed.nii'];
+% fixed = niftiread(filename);
+
+filename_moving = [list_pat(idx).folder,'\',list_pat(idx).name,'\moving.nii'];
+% moving = niftiread(filename);
+
+
+% registratio by Elastix
+
+
+pth_final = "elastix\elastix.exe -f "+  pth_to_folder + ...
+    "\Data\Data\pat01\fixed.nii -m "+pth_to_folder+"\Data\Data\pat01\moving.nii -p " + ...
+    pth_to_folder + "\parameter_files\Parameters_Affine.txt -out "+ ...
+    pth_to_folder+"\TempFile";
+
+system(pth_final );
+
+pth_elastic = "elastix\transformix.exe -def all -out "+pth_to_folder+"\TempFile -tp "+ pth_to_folder+"\TempFile\TransformParameters.0.txt";
+
+system(pth_elastic)
+
+
+
+end
+
+
+
+end
+
