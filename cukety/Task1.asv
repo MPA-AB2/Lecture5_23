@@ -1,0 +1,57 @@
+%% registration elastix-2D
+
+clear all
+close all
+clc
+
+load Data/data1.mat
+% load data2.mat
+
+figure
+subplot(1,3,1)
+imshow(fixed,[])
+title('Fixed')
+subplot(1,3,2)
+imshow(moving,[])
+title('Moving')
+
+
+% [~,help] = system('elastix\elastix.exe --help')
+% 
+% [~,elastix_version] = system('elastix\elastix.exe --version')
+
+pth_to_folder = 'C:\Users\xmarti91\AB2\Lecture5_23\cukety'
+
+
+%% Registratio - RIGID AND AFFINE + masked affine
+
+% create TempFile, define the parameters and paths
+niftiwrite(fixed,"Task1\fixed.nii");
+niftiwrite(moving,"Task1\moving.nii");
+
+%par_path = "parameter_files\Parameters_Rigid.txt";
+
+
+
+% run ELASTIX
+system(['elastix\elastix.exe -f ', ¨¨\Task1\fixed.nii -m C:\Users\xmikes13\Desktop\Lecture5_23-cukety\Task1\moving.nii -p C:\Users\xmikes13\Desktop\Lecture5_23-cukety\parameter_files\Parameters_Rigid.txt -out C:\Users\xmikes13\Desktop\Lecture5_23-cukety\Task1\res' );
+
+
+
+
+% read resulting nii a save to variable - registered
+registered = niftiread("C:\Users\xmikes13\Desktop\Lecture5_23-cukety\Task1\res\result.0.nii");
+
+
+
+
+%% display
+subplot(1,3,3)
+imshow(registered,[])
+title('Registered')
+
+figure
+subplot(1,2,1)
+imshowpair(fixed,moving)
+subplot(1,2,2)
+imshowpair(fixed,registered)
