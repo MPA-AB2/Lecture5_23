@@ -23,6 +23,7 @@ meanVar=zeros(1,3);
         addpath('parameter_files');
         path=which('Parameters_Affine.txt');
         p_txt=[' -p ',path];
+
 %         path=which('m_mask.nii');
 %         m_mask_text=[' -mMask ',path];
 %         path=which('f_mask.nii');
@@ -42,9 +43,6 @@ meanVar=zeros(1,3);
         def=niftiread(which('deformationField.nii'));
         niftiwrite(def,[cesta,'deformationField_Est.nii']);
 
-        [MSE(i), meanVar(i)] = eval_lung(cesta);
-
         rmdir temp s
     end
-    MSE,meanVar
 end
