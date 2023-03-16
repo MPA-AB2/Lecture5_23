@@ -48,8 +48,8 @@
 (Optimizer "AdaptiveStochasticGradientDescent")
 (Transform "BSplineTransform")
 (Metric "AdvancedNormalizedCorrelation")
-//(Metric0Weight 1.0)
-//(Metric1Weight 1.0)
+(Metric0Weight 1.0)
+(Metric1Weight 1.0)
 
 // ***************** Transformation **************************
 
