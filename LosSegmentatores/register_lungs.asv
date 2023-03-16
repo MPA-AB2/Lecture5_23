@@ -10,9 +10,9 @@ folders = {foldersInfo(3:end).name};
 
 %% iterate through folders
 for i = 1:length(folders)
-    outputPath = '\TempFile\';
+    outputPath = 'TempFile\';
     % create temp folder
-    if exist(".\TempFile\","dir")
+    if exist("TempFile\","dir")
         rmdir(outputPath,"s")
     end
     mkdir(outputPath)
@@ -22,43 +22,44 @@ for i = 1:length(folders)
 %     fMaskPath = "./TempFile/fMask.nii";
 %     mMaskPath = "./TempFile/mMask.nii";
     
-%     fixed = niftiread(fixedPath);
-%     moving = niftiread(movingPath);
+    fixed = niftiread(fixedPath);
+    moving = niftiread(movingPath);
     addpath('parameter_files')
     parametersPath = which("Parameters_Exp.txt");
     % masks creation
-%     BW = fixed<multithresh(fixed,1);
-%     niftiwrite(uint8(BW),fMaskPath)
-%     BW = moving<multithresh(moving,1);
-%     niftiwrite(uint8(BW),mMaskPath)
+    BW = zeros(size(fixed));
+    BW(1:5,:)
+    niftiwrite(uint8(BW),fMaskPath)
+    BW = moving<multithresh(moving,1);
+    niftiwrite(uint8(BW),mMaskPath)
 
     %% run elastics
     system(['elastix\elastix.exe -f ',fixedPath,' -m ',movingPath,' -out ',outputPath,' -p ',parametersPath]);
-%     system(".\elastix\elastix.exe -f "+ fixedPath + " -m " + movingPath + " -out " + outputPath + " -p " + parametersPath + " -fMask " + fMaskPath + " -mMask " + mMaskPath);
+%     system(["elastix\elastix.exe -f ",fixedPath," -m ",movingPath," -out ",outputPath," -p ",parametersPath," -fMask ",fMaskPath," -mMask ",mMaskPath]);
 
 
     %% read resulting nii a show results
 
-%     registered = niftiread(fullfile(outputPath,"result.0.nii"));
-% 
-%     figure(1)
-%     subplot(1,3,1)
-%     imshow(fixed,[])
-%     title('Fixed')
-%     subplot(1,3,2)
-%     imshow(moving,[])
-%     title('Moving')
-%     subplot(1,3,3)
-%     imshow(registered,[])
-%     title('Registered')
-%     
-%     figure(2)
-%     subplot(1,2,1)
-%     imshowpair(fixed,moving)
-%     subplot(1,2,2)
-%     imshowpair(fixed,registered)
+    registered = niftiread(fullfile(outputPath,"result.0.nii"));
+
+    figure(i)
+    subplot(1,3,1)
+    imshow(fixed,[])
+    title('Fixed')
+    subplot(1,3,2)
+    imshow(moving,[])
+    title('Moving')
+    subplot(1,3,3)
+    imshow(registered,[])
+    title('Registered')
+    
+    figure(i+3)
+    subplot(1,2,1)
+    imshowpair(fixed,moving)
+    subplot(1,2,2)
+    imshowpair(fixed,registered)
     %% saving deformation map
-    system(['\elastix\transformix.exe -def all -out ',outputPath,' -tp ',char(fullfile(outputPath,"TransformParameters.0.txt"))])
+    system(['elastix\transformix.exe -def all -out ',outputPath,' -tp ',char(fullfile(outputPath,"TransformParameters.0.txt"))])
     
     copyfile(fullfile(outputPath,"deformationField.nii"),fullfile(path_Data,folders{i},"deformationField_Est.nii"))    
 end

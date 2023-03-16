@@ -111,7 +111,7 @@
 // which usually works well. In case of unusual high-resolution images
 // (eg histology) it is necessary to increase this value a bit, to the size
 // of the "smallest visible structure" in the image:
-(MaximumStepLength 1.0)
+(MaximumStepLength 10.0)
 
 // **************** Image sampling **********************
 

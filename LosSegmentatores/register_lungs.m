@@ -19,44 +19,45 @@ for i = 1:length(folders)
     %% create strings with paths to images and parameters
     fixedPath = char(strcat(path_Data,'\',folders{i},'\fixed.nii'));
     movingPath = char(strcat(path_Data,'\',folders{i},'\moving.nii'));
-%     fMaskPath = "./TempFile/fMask.nii";
-%     mMaskPath = "./TempFile/mMask.nii";
+%     fMaskPath = "TempFile/fMask.nii";
+%     mMaskPath = "TempFile/mMask.nii";
     
-    fixed = niftiread(fixedPath);
-    moving = niftiread(movingPath);
+%     fixed = niftiread(fixedPath);
+%     moving = niftiread(movingPath);
     addpath('parameter_files')
     parametersPath = which("Parameters_Exp.txt");
     % masks creation
-%     BW = fixed<multithresh(fixed,1);
+%     BW = ones(size(fixed));
+%     BW(1:5,:)
 %     niftiwrite(uint8(BW),fMaskPath)
 %     BW = moving<multithresh(moving,1);
 %     niftiwrite(uint8(BW),mMaskPath)
 
     %% run elastics
     system(['elastix\elastix.exe -f ',fixedPath,' -m ',movingPath,' -out ',outputPath,' -p ',parametersPath]);
-%     system(".\elastix\elastix.exe -f "+ fixedPath + " -m " + movingPath + " -out " + outputPath + " -p " + parametersPath + " -fMask " + fMaskPath + " -mMask " + mMaskPath);
+%     system(["elastix\elastix.exe -f ",fixedPath," -m ",movingPath," -out ",outputPath," -p ",parametersPath," -fMask ",fMaskPath," -mMask ",mMaskPath]);
 
 
     %% read resulting nii a show results
 
-    registered = niftiread(fullfile(outputPath,"result.0.nii"));
-
-    figure(i)
-    subplot(1,3,1)
-    imshow(fixed,[])
-    title('Fixed')
-    subplot(1,3,2)
-    imshow(moving,[])
-    title('Moving')
-    subplot(1,3,3)
-    imshow(registered,[])
-    title('Registered')
-    
-    figure(i+3)
-    subplot(1,2,1)
-    imshowpair(fixed,moving)
-    subplot(1,2,2)
-    imshowpair(fixed,registered)
+%     registered = niftiread(fullfile(outputPath,"result.0.nii"));
+% 
+%     figure(i)
+%     subplot(1,3,1)
+%     imshow(fixed,[])
+%     title('Fixed')
+%     subplot(1,3,2)
+%     imshow(moving,[])
+%     title('Moving')
+%     subplot(1,3,3)
+%     imshow(registered,[])
+%     title('Registered')
+%     
+%     figure(i+3)
+%     subplot(1,2,1)
+%     imshowpair(fixed,moving)
+%     subplot(1,2,2)
+%     imshowpair(fixed,registered)
     %% saving deformation map
     system(['elastix\transformix.exe -def all -out ',outputPath,' -tp ',char(fullfile(outputPath,"TransformParameters.0.txt"))])
     

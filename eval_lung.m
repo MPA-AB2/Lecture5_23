@@ -18,7 +18,8 @@ for i = 1:length(D)
         + var((squeeze(DF_GT(:,:,:,:,1))-squeeze(DF_est(:,:,:,:,1))),[],'all'))  )/2;
 
 end
-
+disp(MSE)
+disp(STD)
 MSE = mean(MSE);
 STD = mean(STD);
 
