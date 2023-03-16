@@ -2,7 +2,7 @@ function register_lungs(path_Data)
 MSE=zeros(1,3);
 meanVar=zeros(1,3);
     for i=1:3
-        cesta=[path_Data,'\Data\pat0',num2str(i),'\'];
+        cesta=[path_Data,'\pat0',num2str(i),'\'];
         fixed=niftiread([cesta,'fixed.nii']);
         moving=niftiread([cesta,'moving.nii']);
 %         m_mask=zeros(size(moving));
