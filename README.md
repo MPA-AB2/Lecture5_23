@@ -24,15 +24,15 @@
 2. Extract all files from zip file into the created subfolder **elastix** in **NAME_OF_YOUR_TEAM** folder.
 3. Download the data in a zip file from [here](https://www.vut.cz/www_base/vutdisk.php?i=311029afae). Extract the content of the zip folder into **Lecture5** folder. It contains three mat files (*dataX.mat*), each containing *fixed* (reference) and *moving* image. In the first task we will be working with *data1.mat* only.
 4. Elastix can work with the input in the *.nii* files.
-7. Create a script for registration:
+5. Create a script for registration:
    * load example images from *data1.mat*,
    * write images from *fixed* and *moving* variables into *.nii* file by niftiwrite function,
    * run image registration using Elastix by command line execution in Matlab,
    * read registered image from *nii* file by *niftiread* function.
-9. Perform geometrical transformation of the image via Transformix using command line execution in Matlab.
-10. Change the transformix command to save also the deformation field.
-11. Perform rigid and affine registration of images from data1.mat and set the parametric files properly to get visually optimal results.
-12. Save *.tiff* image with depicted results
+6. Perform geometrical transformation of the image via Transformix using command line execution in Matlab.
+7. Change the transformix command to save also the deformation field.
+8. Perform rigid and affine registration of images from data1.mat and set the parametric files properly to get visually optimal results.
+9. Save *.tiff* image with depicted results
 
 ### Task 2 - Using binary masks in Elastix
 1. Create a copy of your registration script from Task 1.
@@ -51,5 +51,6 @@
 has the following inputs and outputs:
   * MSE - mean square error = mean square value of difference between estimated and true deformation fields
   * meanVar - mean variance of difference values between estimated and true deformation fields.
-6. **Push** your program implementations into GitHub repository **Lecture5_23** using the **branch of your team** (stage changed -> fill commit message -> sign off -> commit -> push -> select *NAME_OF_YOUR_TEAM* branch -> push -> manager-core -> web browser -> fill your credentials).
+6. For blind evaluation convert your script to function `register_lungs(path_Data)` where only input is path to the Data folder in the same format as before.
+7. **Push** your program implementations into GitHub repository **Lecture5_23** using the **branch of your team** (stage changed -> fill commit message -> sign off -> commit -> push -> select *NAME_OF_YOUR_TEAM* branch -> push -> manager-core -> web browser -> fill your credentials).
 8. Submit *.tiff* image of the best-obtained result of your registration approach and fill in the corresponding results into a shared [Excel table](https://docs.google.com/spreadsheets/d/1kFcj3svxZ9dXdnNcJw329W-IJwhLGNss/edit#gid=1879335341). The evaluation of results from each team will be presented at the end of the lecture.
