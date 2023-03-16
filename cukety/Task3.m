@@ -4,10 +4,10 @@ clear all
 close all
 clc
 
-filename = 'Data\pat01\fixed.nii';
+filename = 'Data\Data\pat01\fixed.nii';
 fixed = niftiread(filename);
 
-filename = 'Data\pat01\moving.nii';
+filename = 'Data\Data\pat01\moving.nii';
 moving = niftiread(filename);
 
 figure
@@ -27,18 +27,30 @@ imshowpair(fixed,moving)
 %% Registration
 
 % registratio by Elastix
+pth_to_folder = "C:\Users\xmarti91\AB2\Lecture5_23\cukety";
 
+pth_final = "elastix\elastix.exe -f "+  pth_to_folder + ...
+    "\Data\Data\pat01\fixed.nii -m "+pth_to_folder+"\Data\Data\pat01\moving.nii -p " + ...
+    pth_to_folder + "\parameter_files\Parameters_Affine.txt -out "+ ...
+    pth_to_folder+"\TempFile";
 
+system(pth_final );
 
-% load result nifti
-path_result = 'add path to result nifti file';
-registered = niftiread([path_result '\result.0.nii']);
+pth_elastic = "elastix\transformix.exe -def all -out "+pth_to_folder+"\TempFile -tp "+ pth_to_folder+"\TempFile\TransformParameters.0.txt";
+
+system(pth_elastic)
+
+%% load result nifti
+
+path_result = pth_to_folder+"\TempFile";
+registered = niftiread(path_result +"\result.0.nii");
 
 %% evaluation 
 
-path_Def_GT = 'Data\pat01\deformationField.nii';
+path_Def_GT = 'Data\Data\pat01\deformationField.nii';
+path_Def_Est = 'TempFile\deformationField.nii'; 
 
-[MSE,STD] = eval_lung([path_Def_GT], [path_Def_Est])
+[MSE,STD] = eval_lung('Data\Data\')
 
 
 %% display
