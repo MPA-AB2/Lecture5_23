@@ -12,7 +12,7 @@
 6. In the MAIN folder should be new folder Lecture5_23.
 7. In the **Lecture5** folder create subfolder **NAME_OF_YOUR_TEAM**.
 8. Copy folder ***parameter_files_stud** into **NAME_OF_YOUR_TEAM** subfolder.
-9. Run Git bash in **Lecture5** folder (should be *main* branch active).
+9. Run Git bash in **Lecture5_23** folder (should be *main* branch active).
 10. Create a new branch for your team by: `$ git checkout -b NAME_OF_YOUR_TEAM`
 11. Check that  *NAME_OF_YOUR_TEAM* branch is active.
 12. Continue to the task...
