@@ -14,7 +14,7 @@ for i = 1:size(folders,1)
     %creating masks
     fMask = niftiread(strcat(mainPath,folders{i},'\fixed.nii'));
     fMask = uint8(fMask>0);
-    niftiwrite(fMask, strcat(mainPath,folders{i},'Temp\fmask.nii'));
+    niftiwrite(fMask, strcat(mainPath,'Temp\fmask.nii'));
     mMask = niftiread(strcat(mainPath,folders{i},'\moving.nii'));
     mMask = uint8(mMask>0);
     niftiwrite(mMask, strcat(mainPath,'Temp\mmask.nii'))
