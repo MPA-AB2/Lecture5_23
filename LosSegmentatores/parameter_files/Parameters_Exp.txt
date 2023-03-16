@@ -34,7 +34,7 @@
 (ResampleInterpolator "FinalBSplineInterpolator")
 (Resampler "DefaultResampler")
 
-// (RandomSeed 121212)
+(RandomSeed 121212)
 
 // These may be changed to Fixed/MovingSmoothingImagePyramid.
 // See the manual.

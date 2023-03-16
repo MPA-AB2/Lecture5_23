@@ -22,8 +22,8 @@ for i = 1:length(folders)
 %     fMaskPath = "./TempFile/fMask.nii";
 %     mMaskPath = "./TempFile/mMask.nii";
     
-%     fixed = niftiread(fixedPath);
-%     moving = niftiread(movingPath);
+    fixed = niftiread(fixedPath);
+    moving = niftiread(movingPath);
     addpath('parameter_files')
     parametersPath = which("Parameters_Exp.txt");
     % masks creation
@@ -39,24 +39,24 @@ for i = 1:length(folders)
 
     %% read resulting nii a show results
 
-%     registered = niftiread(fullfile(outputPath,"result.0.nii"));
-% 
-%     figure(1)
-%     subplot(1,3,1)
-%     imshow(fixed,[])
-%     title('Fixed')
-%     subplot(1,3,2)
-%     imshow(moving,[])
-%     title('Moving')
-%     subplot(1,3,3)
-%     imshow(registered,[])
-%     title('Registered')
-%     
-%     figure(2)
-%     subplot(1,2,1)
-%     imshowpair(fixed,moving)
-%     subplot(1,2,2)
-%     imshowpair(fixed,registered)
+    registered = niftiread(fullfile(outputPath,"result.0.nii"));
+
+    figure(i)
+    subplot(1,3,1)
+    imshow(fixed,[])
+    title('Fixed')
+    subplot(1,3,2)
+    imshow(moving,[])
+    title('Moving')
+    subplot(1,3,3)
+    imshow(registered,[])
+    title('Registered')
+    
+    figure(i+3)
+    subplot(1,2,1)
+    imshowpair(fixed,moving)
+    subplot(1,2,2)
+    imshowpair(fixed,registered)
     %% saving deformation map
     system(['elastix\transformix.exe -def all -out ',outputPath,' -tp ',char(fullfile(outputPath,"TransformParameters.0.txt"))])
     
