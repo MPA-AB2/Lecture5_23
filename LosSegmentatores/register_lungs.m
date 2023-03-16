@@ -14,8 +14,8 @@ for i = 1:length(folders)
     % create temp folder
     if exist(".\TempFile\","dir")
         rmdir(outputPath,"s")
-        mkdir(outputPath)
     end
+    mkdir(outputPath)
     %% create strings with paths to images and parameters
     fixedPath = strcat(path_Data,'\',folders{i},'\fixed.nii');
     movingPath = strcat(path_Data,'\',folders{i},'\moving.nii');
@@ -40,7 +40,7 @@ for i = 1:length(folders)
     %% read resulting nii a show results
 
 %     registered = niftiread(fullfile(outputPath,"result.0.nii"));
-% 
+
 %     figure(1)
 %     subplot(1,3,1)
 %     imshow(fixed,[])
