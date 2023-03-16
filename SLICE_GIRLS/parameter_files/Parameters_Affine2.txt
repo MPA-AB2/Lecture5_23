@@ -104,13 +104,13 @@
 // Maximum number of iterations in each resolution level:
 // 200-500 works usually fine for affine registration.
 // For more robustness, you may increase this to 1000-2000.
-(MaximumNumberOfIterations 1800)
+(MaximumNumberOfIterations 1600)
 
 // The step size of the optimizer, in mm. By default the voxel size is used.
 // which usually works well. In case of unusual high-resolution images
 // (eg histology) it is necessary to increase this value a bit, to the size
 // of the "smallest visible structure" in the image:
-(MaximumStepLength 5.0)
+(MaximumStepLength 6.0)
 
 // **************** Image sampling **********************
 
