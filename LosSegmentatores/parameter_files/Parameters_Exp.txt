@@ -79,7 +79,7 @@
 // If the mask serves as region of interest, set it to false.
 // If the mask indicates which pixels are valid, then set it to true.
 // If you do not use a mask, the option doesn't matter.
-(ErodeMask "true")
+(ErodeMask "false")
 
 // ******************** Multiresolution **********************
 
@@ -111,7 +111,7 @@
 // which usually works well. In case of unusual high-resolution images
 // (eg histology) it is necessary to increase this value a bit, to the size
 // of the "smallest visible structure" in the image:
-(MaximumStepLength 10.0)
+(MaximumStepLength 1.0)
 
 // **************** Image sampling **********************
 
