@@ -14,21 +14,22 @@ for i = 1:size(folders,1)
     %creating masks
     fMask = niftiread(strcat(mainPath,folders{i},'\fixed.nii'));
     fMask = uint8(fMask>0);
-    niftiwrite(fMask, strcat(mainPath,folders{i},'\fmask.nii'));
+    niftiwrite(fMask, strcat(mainPath,folders{i},'Temp\fmask.nii'));
     mMask = niftiread(strcat(mainPath,folders{i},'\moving.nii'));
     mMask = uint8(mMask>0);
-    niftiwrite(mMask, strcat(mainPath,folders{i},'\mmask.nii'))
+    niftiwrite(mMask, strcat(mainPath,'Temp\mmask.nii'))
     %paths
     fixed = strcat(' -f',{' '},mainPath,folders{i},'\fixed.nii');
     moving = strcat(' -m',{' '},mainPath,folders{i},'\moving.nii');
     outputDir = strcat(' -out',{' '},mainPath,'Temp\');
-    mMask = strcat(' -mMask',{' '},mainPath,folders{i},'\mmask.nii');
-    fMask = strcat(' -fMask',{' '},mainPath,folders{i},'\fmask.nii');
+    mMask = strcat(' -mMask',{' '},mainPath,'Temp\mmask.nii');
+    fMask = strcat(' -fMask',{' '},mainPath,'Temp\fmask.nii');
     wholeThing{i,1} = strcat(elastixPathExe,fixed,moving,outputDir,params,mMask,fMask);
     wholeThing{i,2} = strcat(mainPath,folders{i},'\deformationField_Est.nii');
 end
 wholeThing{1,3} =strcat(transformixPathExe, ' -def all -out', {' '},mainPath,'Temp -tp', {' '}, mainPath,'Temp\TransformParameters.0.txt');
 wholeThing{1,4} =strcat(mainPath,'Temp\deformationField.nii');
+
 
 end
 
