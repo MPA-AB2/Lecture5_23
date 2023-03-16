@@ -3,7 +3,7 @@ function [] = register_lungs(path_Data)
 %   Detailed explanation goes here
 wt = myLoop(path_Data, ...
     'elastix/',... % path to Elastix
-    {'poc14.txt'});
+    {which('poc14.txt')});
 
 mkdir([path_Data '\Temp'])
 
