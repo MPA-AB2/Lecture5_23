@@ -10,22 +10,22 @@ folders = {foldersInfo(3:end).name};
 
 %% iterate through folders
 for i = 1:length(folders)
-    outputPath = ".\TempFile\";
+    outputPath = 'TempFile\';
     % create temp folder
-    if exist(".\TempFile\","dir")
+    if exist("TempFile\","dir")
         rmdir(outputPath,"s")
     end
     mkdir(outputPath)
     %% create strings with paths to images and parameters
-    fixedPath = strcat(path_Data,'\',folders{i},'\fixed.nii');
-    movingPath = strcat(path_Data,'\',folders{i},'\moving.nii');
+    fixedPath = char(strcat(path_Data,'\',folders{i},'\fixed.nii'));
+    movingPath = char(strcat(path_Data,'\',folders{i},'\moving.nii'));
 %     fMaskPath = "./TempFile/fMask.nii";
 %     mMaskPath = "./TempFile/mMask.nii";
     
 %     fixed = niftiread(fixedPath);
 %     moving = niftiread(movingPath);
-    
-    parametersPath = ".\parameter_files\Parameters_Exp.txt";
+    addpath('parameter_files')
+    parametersPath = which("Parameters_Exp.txt");
     % masks creation
 %     BW = fixed<multithresh(fixed,1);
 %     niftiwrite(uint8(BW),fMaskPath)
@@ -33,14 +33,14 @@ for i = 1:length(folders)
 %     niftiwrite(uint8(BW),mMaskPath)
 
     %% run elastics
-    system(".\elastix\elastix.exe -f "+ fixedPath + " -m " + movingPath + " -out " + outputPath + " -p " + parametersPath);
+    system(['elastix\elastix.exe -f ',fixedPath,' -m ',movingPath,' -out ',outputPath,' -p ',parametersPath]);
 %     system(".\elastix\elastix.exe -f "+ fixedPath + " -m " + movingPath + " -out " + outputPath + " -p " + parametersPath + " -fMask " + fMaskPath + " -mMask " + mMaskPath);
 
 
     %% read resulting nii a show results
 
 %     registered = niftiread(fullfile(outputPath,"result.0.nii"));
-
+% 
 %     figure(1)
 %     subplot(1,3,1)
 %     imshow(fixed,[])
@@ -58,7 +58,7 @@ for i = 1:length(folders)
 %     subplot(1,2,2)
 %     imshowpair(fixed,registered)
     %% saving deformation map
-    system(".\elastix\transformix.exe -def all -out " + outputPath + " -tp " + fullfile(outputPath,"TransformParameters.0.txt"))
+    system(['elastix\transformix.exe -def all -out ',outputPath,' -tp ',char(fullfile(outputPath,"TransformParameters.0.txt"))])
     
     copyfile(fullfile(outputPath,"deformationField.nii"),fullfile(path_Data,folders{i},"deformationField_Est.nii"))    
 end
