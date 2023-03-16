@@ -51,6 +51,6 @@
 has the following inputs and outputs:
   * MSE - mean square error = mean square value of difference between estimated and true deformation fields
   * meanVar - mean variance of difference values between estimated and true deformation fields.
-6. For blind evaluation convert your script to function `register_lungs(path_Data)` where only input is path to the Data folder in the same format as before.
+6. For blind evaluation convert your script to function `register_lungs(path_Data)` with no output and only input, which is the path to the Data folder in the same format as before.
 7. **Push** your program implementations into GitHub repository **Lecture5_23** using the **branch of your team** (stage changed -> fill commit message -> sign off -> commit -> push -> select *NAME_OF_YOUR_TEAM* branch -> push -> manager-core -> web browser -> fill your credentials).
 8. Submit *.tiff* image of the best-obtained result of your registration approach and fill in the corresponding results into a shared [Excel table](https://docs.google.com/spreadsheets/d/1kFcj3svxZ9dXdnNcJw329W-IJwhLGNss/edit#gid=1879335341). The evaluation of results from each team will be presented at the end of the lecture.
