@@ -47,7 +47,9 @@
 // and need to be chosen careful for each application. See manual.
 (Optimizer "AdaptiveStochasticGradientDescent")
 (Transform "BSplineTransform")
-(Metric "AdvancedMattesMutualInformation")
+(Metric "AdvancedNormalizedCorrelation")
+//(Metric0Weight 1.0)
+//(Metric1Weight 1.0)
 
 // ***************** Transformation **************************
 
@@ -84,13 +86,13 @@
 // The number of resolutions. 1 Is only enough if the expected
 // deformations are small. 3 or 4 mostly works fine. For large
 // images and large deformations, 5 or 6 may even be useful.
-(NumberOfResolutions 2)
+(NumberOfResolutions 4)
 
 // The downsampling/blurring factors for the image pyramids.
 // By default, the images are downsampled by a factor of 2
 // compared to the next resolution.
 // So, in 2D, with 4 resolutions, the following schedule is used:/ (ImagePyramidSchedule  2 2  1 1 )
-(ImagePyramidSchedule 2 2  1 1 )
+(ImagePyramidSchedule 8 8  4 4  2 2  1 1 )
 // And in 3D:
 //(ImagePyramidSchedule 8 8 8  4 4 4  2 2 2  1 1 1 )
 // You can specify any schedule, for example:
@@ -109,7 +111,7 @@
 // which usually works well. In case of unusual high-resolution images
 // (eg histology) it is necessary to increase this value a bit, to the size
 // of the "smallest visible structure" in the image:
-(MaximumStepLength 10.0)
+(MaximumStepLength 1.0)
 
 // **************** Image sampling **********************
 
@@ -118,7 +120,7 @@
 // With an AdaptiveStochasticGradientDescent optimizer,
 // in combination with the two options below, around 2000
 // samples may already suffice.
-(NumberOfSpatialSamples 1024)
+(NumberOfSpatialSamples 2048)
 
 // Refresh these spatial samples in every iteration, and select
 // them randomly. See the manual for information on other sampling

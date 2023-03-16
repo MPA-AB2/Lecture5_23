@@ -1,5 +1,5 @@
 function register_lungs(path_Data)
-% Parameters for registration are a part of work of Fourcade et al. 
+% Parameters for registration are a based on work of Fourcade et al. 
 % DOI:10.1007/978-3-030-71827-5_13
 %% find names of folders
 % path_Data = "C:\Users\xnantl01\MPA-AB2\Lecture5_23\Data";
@@ -22,8 +22,8 @@ for i = 1:length(folders)
     fixed = niftiread(fixedPath);
     moving = niftiread(movingPath);
     
-%     parametersPath = ".\parameter_files\Parameters_Exp.txt";
-    parametersPath = ".\parameter_files\Parameters_Git.txt";
+    parametersPath = ".\parameter_files\Parameters_Exp.txt";
+%     parametersPath = ".\parameter_files\Parameters_Git.txt";
 %     parametersPath = ".\parameter_files\Parameters_Affine_v2.txt";
 %     parametersPath = ".\parameter_files\Parameters_Par0049.txt";
     % masks
